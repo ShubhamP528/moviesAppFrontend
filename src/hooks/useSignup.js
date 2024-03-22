@@ -15,7 +15,7 @@ export const useSignup = () => {
     setError(null);
 
     const response = await fetch(
-      "https://moviesappbackend.onrender.com/api/auth/login",
+      "https://moviesappbackend.onrender.com/api/auth/signup",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
