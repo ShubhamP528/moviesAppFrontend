@@ -22,7 +22,7 @@ const AlertForm = ({ onClose }) => {
 
     const newCode = inputValue;
     axios
-      .post("api/room/update", {
+      .post("https://moviesappbackend.onrender.com/api/room/update", {
         room: newCode,
         username: TheatorUser.username,
       })
@@ -43,6 +43,7 @@ const AlertForm = ({ onClose }) => {
   };
 
   const NewRoomCode = async () => {
+    console.log(TheatorUser.username);
     const newCode = generateRoomCode();
     axios
       .post("api/room/update", {

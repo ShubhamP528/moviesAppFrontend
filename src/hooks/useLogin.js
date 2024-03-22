@@ -13,31 +13,38 @@ export const useSignin = () => {
   const signin = async (username, password) => {
     setIsLoadingL(true);
     setErrorL(null);
+    try {
+      const response = await fetch(
+        "https://moviesappbackend.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        }
+      );
 
-    const response = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
+      const json = await response.json();
+      console.log(json);
 
-    const json = await response.json();
-    console.log(json);
+      if (!response.ok) {
+        setIsLoadingL(false);
+        setErrorL(json.error);
+      }
 
-    if (!response.ok) {
+      if (response.ok) {
+        // save the user to local storage
+        localStorage.setItem("TheatorUser", JSON.stringify(json));
+
+        toast.success("Successfully login");
+        // update the auth context
+        dispatch({ type: "LOGIN", payload: json });
+
+        setIsLoadingL(false);
+        navigate("/");
+      }
+    } catch (err) {
       setIsLoadingL(false);
-      setErrorL(json.error);
-    }
-
-    if (response.ok) {
-      // save the user to local storage
-      localStorage.setItem("TheatorUser", JSON.stringify(json));
-
-      toast.success("Successfully login");
-      // update the auth context
-      dispatch({ type: "LOGIN", payload: json });
-
-      setIsLoadingL(false);
-      navigate("/");
+      setErrorL(err.message);
     }
   };
 

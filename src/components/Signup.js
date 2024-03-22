@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useSignup } from "../hooks/useSignup"; // Assuming you have a hook for signup functionality
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const { signup, isLoadingS, errorS } = useSignup(); // Using custom hook for signup functionality
@@ -26,7 +27,7 @@ const Signup = () => {
           onSubmit={(values, { setSubmitting, resetForm }) => {
             signup(values.username, values.email, values.password);
             if (errorS) {
-              alert(errorS);
+              toast.error(errorS);
             }
             setSubmitting(false);
             resetForm();

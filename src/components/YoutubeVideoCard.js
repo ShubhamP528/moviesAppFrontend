@@ -1,21 +1,27 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../Contexts/AppContext";
+import { useAuthcontext } from "../Contexts/AuthContext";
+import toast from "react-hot-toast";
 
 const YouTubeVideoCard = ({ video }) => {
   const navigate = useNavigate();
+  const { TheatorUser } = useAuthcontext();
   const { room } = useAppContext();
 
   const playHandle = () => {
-    console.log("hello");
-    navigate(`/video/${video?.id?.videoId}/${room}`);
+    if (TheatorUser) {
+      navigate(`/video/${video?.id?.videoId}/${room}`);
+    } else {
+      navigate("/login");
+      toast.error("please Login Fisrt");
+    }
   };
 
   return (
     <div
-      key={video?.id?.videoId}
       onClick={playHandle}
-      className="max-w-xs mx-auto bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg"
+      className="max-w-xs mx-auto bg-white rounded-lg cursor-pointer overflow-hidden shadow-md hover:shadow-lg"
     >
       <img
         className="w-full"

@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useSignin } from "../hooks/useLogin";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
   const { signin, isLoadingL, errorL } = useSignin();
@@ -23,7 +24,7 @@ const LoginForm = () => {
           onSubmit={(values, { setSubmitting, resetForm }) => {
             signin(values.username, values.password);
             if (errorL) {
-              alert(errorL);
+              toast.error(errorL);
             }
             setSubmitting(false);
             resetForm();

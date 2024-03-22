@@ -54,7 +54,7 @@ const Theator = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&pageToken=${pageToken}&q=${searchQuery} song&key=AIzaSyDptw29QDvr3hBZxpnMOTUO-RPPQiGL0NQ`
+        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&pageToken=${pageToken}&q=${searchQuery} song&key=AIzaSyBwMshSAOyLsJ27wBd7A0RnsdkRIIhPTW0`
       );
       setYtData(response.data.items);
       setTotalResults(response.data.pageInfo.totalResults);
@@ -69,7 +69,7 @@ const Theator = () => {
   const fetchMoreVideos = async () => {
     try {
       const response = await axios.get(
-        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&pageToken=${pageToken}&q=${searchQuery} song&key=AIzaSyDptw29QDvr3hBZxpnMOTUO-RPPQiGL0NQ`
+        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&pageToken=${pageToken}&q=${searchQuery} song&key=AIzaSyBwMshSAOyLsJ27wBd7A0RnsdkRIIhPTW0`
       );
       setYtData((prevData) => [...prevData, ...response.data.items]);
       setPageToken(response.data.nextPageToken);

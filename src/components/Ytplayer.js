@@ -258,13 +258,32 @@ function Ytplayer() {
       }
     };
 
+    const onPlayerReady = (event) => {
+      console.log("Player is ready");
+      if (player) {
+        player.addEventListener("onStateChange", handleStateChange);
+      }
+    };
+
+    // Check if player is available
     if (player) {
-      player.addEventListener("onStateChange", handleStateChange);
+      // Player is available, add event listener directly
+      player.addEventListener("onReady", onPlayerReady);
+    } else {
+      // Player is not yet available, wait for it to be ready
+      const interval = setInterval(() => {
+        if (player) {
+          player.addEventListener("onReady", onPlayerReady);
+          clearInterval(interval);
+        }
+      }, 100);
     }
 
+    // Cleanup function
     return () => {
+      console.log("Cleanup function called");
       if (player) {
-        player.removeEventListener("onStateChange", handleStateChange);
+        player?.removeEventListener("onStateChange", handleStateChange);
       }
     };
   }, [player, sessionId]);
@@ -372,8 +391,9 @@ function Ytplayer() {
   }, [sessionId, player, videoId]);
 
   const onPlayerReady = (event) => {
+    console.log("Player is ready:", event.target);
     setPlayer(event.target); // Store player instance in state
-    playerRef.current = player;
+    playerRef.current = event.target;
   };
 
   // Example button handlers

@@ -5,6 +5,8 @@ import { useAuthcontext } from "../Contexts/AuthContext";
 import AlertForm from "./AlertForm";
 import { useAppContext } from "../Contexts/AppContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,9 +24,25 @@ const Navbar = () => {
 
   const getInRoom = () => {
     if (room) {
-      navigate(`/video/ram/${room}`);
+      axios
+        .post("https://moviesappbackend.onrender.com/api/getVideoId", {
+          room: room,
+        })
+        .then((data) => {
+          console.log(data.data);
+          if (data?.data?.videoId === "not available") {
+            toast.error("Play video first");
+          }
+          if (data?.data?.videoId !== "not available" && data?.data?.videoId) {
+            navigate(`/video/${data?.data?.videoId}/${room}`);
+          }
+        })
+        .catch((er) => {
+          console.log(er);
+          toast.error(er?.response?.data?.message + " First Play Video");
+        });
+      console.log("hello");
     }
-    console.log("hello");
   };
 
   const handleCloseAlert = () => {
