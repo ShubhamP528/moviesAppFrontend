@@ -1,5 +1,5 @@
 import React from "react";
-import YouTubeVideoCard from "./YouTubeVideoCard";
+import YouTubeVideoCard from "./YoutubeVideoCard";
 
 const VideoGrid = ({ videos }) => {
   return (
