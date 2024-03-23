@@ -3,8 +3,7 @@
     "target": "https://moviesappbackend.onrender.com",
     "changeOrigin": true,
     "pathRewrite": {
-      "^/api": "/api"
-    },
-    "secure": false
+      "^/api": ""
+    }
   }
 }
