@@ -35,7 +35,7 @@
   ],
   "proxy": {
     "/api": {
-      "target": "https://moviesappbackend.onrender.com",
+      "target": "https://moviesappbackend.onrender.com/api",
       "changeOrigin": true
     }
   }

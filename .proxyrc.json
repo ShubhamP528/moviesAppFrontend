@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://moviesappbackend.onrender.com",
+    "target": "http://localhost:8080/api",
     "changeOrigin": true,
     "pathRewrite": {
       "^/api": ""
