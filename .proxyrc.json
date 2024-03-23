@@ -1,9 +1,0 @@
-{
-  "/api": {
-    "target": "https://moviesappbackend.onrender.com/api",
-    "changeOrigin": true,
-    "pathRewrite": {
-      "^/api": ""
-    }
-  }
-}
