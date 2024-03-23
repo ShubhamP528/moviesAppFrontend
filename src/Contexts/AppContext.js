@@ -9,7 +9,7 @@ export const AppContextProvider = ({ children }) => {
     if (user?.room) {
       setRoom(user?.room);
     }
-  }, []);
+  }, [room]);
 
   const value = { room, setRoom };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

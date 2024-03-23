@@ -228,17 +228,17 @@ function Ytplayer() {
   const [host, setHost] = useState(null); // State to maintain the host
   const playerRef = useRef(null);
 
-  useEffect(() => {
-    // Listen for the "videoId" event from the backend
-    socket.on("videoId", (receivedVideoId) => {
-      setVideoId(receivedVideoId);
-    });
+  // useEffect(() => {
+  //   // Listen for the "videoId" event from the backend
+  //   socket.on("videoId", (receivedVideoId) => {
+  //     setVideoId(receivedVideoId);
+  //   });
 
-    // Clean up the socket event listener when component unmounts
-    return () => {
-      socket.off("videoId");
-    };
-  }, []); // Run this effect only once upon component mount
+  //   // Clean up the socket event listener when component unmounts
+  //   return () => {
+  //     socket.off("videoId");
+  //   };
+  // }, []); // Run this effect only once upon component mount
 
   useEffect(() => {
     const handleStateChange = (event) => {
@@ -258,32 +258,13 @@ function Ytplayer() {
       }
     };
 
-    const onPlayerReady = (event) => {
-      console.log("Player is ready");
-      if (player) {
-        player.addEventListener("onStateChange", handleStateChange);
-      }
-    };
-
-    // Check if player is available
     if (player) {
-      // Player is available, add event listener directly
-      player.addEventListener("onReady", onPlayerReady);
-    } else {
-      // Player is not yet available, wait for it to be ready
-      const interval = setInterval(() => {
-        if (player) {
-          player.addEventListener("onReady", onPlayerReady);
-          clearInterval(interval);
-        }
-      }, 100);
+      player.addEventListener("onStateChange", handleStateChange);
     }
 
-    // Cleanup function
     return () => {
-      console.log("Cleanup function called");
       if (player) {
-        player?.removeEventListener("onStateChange", handleStateChange);
+        player.removeEventListener("onStateChange", handleStateChange);
       }
     };
   }, [player, sessionId]);

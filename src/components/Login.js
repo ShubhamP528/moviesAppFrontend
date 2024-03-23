@@ -24,7 +24,7 @@ const LoginForm = () => {
           onSubmit={(values, { setSubmitting, resetForm }) => {
             signin(values.username, values.password);
             if (errorL) {
-              toast.error(errorL);
+              console.log(errorL);
             }
             setSubmitting(false);
             resetForm();

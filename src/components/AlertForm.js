@@ -21,8 +21,9 @@ const AlertForm = ({ onClose }) => {
     console.log("Submitted value:", inputValue);
 
     const newCode = inputValue;
+    console.log(newCode, TheatorUser?.username);
     axios
-      .post("https://moviesappbackend.onrender.com/api/room/update", {
+      .post("/api/room/update", {
         room: newCode,
         username: TheatorUser.username,
       })

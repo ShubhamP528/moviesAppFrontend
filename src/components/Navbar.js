@@ -22,26 +22,27 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const getInRoom = () => {
+  const getInRoom = async () => {
     if (room) {
-      axios
-        .post("https://moviesappbackend.onrender.com/api/getVideoId", {
+      try {
+        const data = await axios.post("/api/getVideoId", {
           room: room,
-        })
-        .then((data) => {
-          console.log(data.data);
-          if (data?.data?.videoId === "not available") {
-            toast.error("Play video first");
-          }
-          if (data?.data?.videoId !== "not available" && data?.data?.videoId) {
-            navigate(`/video/${data?.data?.videoId}/${room}`);
-          }
-        })
-        .catch((er) => {
-          console.log(er);
-          toast.error(er?.response?.data?.message + " First Play Video");
         });
-      console.log("hello");
+        console.log(data.data);
+        if (data?.data?.videoId === "not available") {
+          toast.error("Play video first");
+        }
+        if (data?.data?.videoId !== "not available" && data?.data?.videoId) {
+          navigate(`/video/${data?.data?.videoId}/${room}`);
+        }
+        // .catch((er) => {
+        //   console.log(er);
+        //   toast.error(er?.response?.data?.message + " First Play Video");
+        // });
+      } catch (err) {
+        toast.error(err?.response?.data?.message + " First Play Video");
+        console.log(err);
+      }
     }
   };
 
@@ -93,7 +94,7 @@ const Navbar = () => {
                   Welcome, {TheatorUser.username}!
                 </span>
                 <span className="text-gray-300 font-medium">
-                  Room :-{" "}
+                  Room :-
                   <button
                     onClick={getInRoom}
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -204,7 +205,13 @@ const Navbar = () => {
                 Welcome, {TheatorUser.username}!
               </span>
               <span className="text-gray-300 font-medium">
-                Room :- {TheatorUser.room}!
+                Room :-{" "}
+                <button
+                  onClick={getInRoom}
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  {room}!
+                </button>
               </span>
               <button
                 onClick={changeRoom}

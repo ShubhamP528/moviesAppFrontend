@@ -13,34 +13,36 @@ export const useSignup = () => {
   const signup = async (username, email, password) => {
     setIsLoading(true);
     setError(null);
-
-    const response = await fetch(
-      "https://moviesappbackend.onrender.com/api/auth/signup",
-      {
+    try {
+      const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
-      }
-    );
-    const json = await response.json();
-    console.log(json);
+      });
+      const json = await response.json();
+      console.log(json);
 
-    if (!response.ok) {
+      if (!response.ok) {
+        setIsLoading(false);
+        setError(json.error);
+      }
+
+      if (response.ok) {
+        // save the user to local storage
+
+        localStorage.setItem("TheatorUser", JSON.stringify(json));
+
+        toast.success("Successfully login with signup");
+        // update the auth context
+        dispatch({ type: "LOGIN", payload: json });
+
+        setIsLoading(false);
+        //   navigate("/home");
+      }
+    } catch (err) {
+      toast.error(err.message);
       setIsLoading(false);
       setError(json.error);
-    }
-
-    if (response.ok) {
-      // save the user to local storage
-
-      localStorage.setItem("TheatorUser", JSON.stringify(json));
-
-      toast.success("Successfully login with signup");
-      // update the auth context
-      dispatch({ type: "LOGIN", payload: json });
-
-      setIsLoading(false);
-      //   navigate("/home");
     }
   };
 
