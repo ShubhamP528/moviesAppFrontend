@@ -14,14 +14,11 @@ export const useSignin = () => {
     setIsLoadingL(true);
     setErrorL(null);
     try {
-      const response = await fetch(
-        "https://moviesappbackend.onrender.com/api/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password }),
-        }
-      );
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
 
       const json = await response.json();
       console.log(json);

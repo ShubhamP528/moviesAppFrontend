@@ -25,12 +25,9 @@ const Navbar = () => {
   const getInRoom = async () => {
     if (room) {
       try {
-        const data = await axios.post(
-          "https://moviesappbackend.onrender.com/api/getVideoId",
-          {
-            room: room,
-          }
-        );
+        const data = await axios.post("/api/getVideoId", {
+          room: room,
+        });
         console.log(data.data);
         if (data?.data?.videoId === "not available") {
           toast.error("Play video first");
