@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useAuthcontext } from "../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useAppContext } from "../Contexts/AppContext";
 
 export const useSignin = () => {
   const [errorL, setErrorL] = useState(null);
   const [isLoadingL, setIsLoadingL] = useState(null);
   const { dispatch } = useAuthcontext();
+  const { setRoom } = useAppContext();
 
   const navigate = useNavigate();
 
@@ -36,6 +38,7 @@ export const useSignin = () => {
         toast.success("Successfully login");
         // update the auth context
         dispatch({ type: "LOGIN", payload: json });
+        setRoom(json.room);
 
         setIsLoadingL(false);
         navigate("/");

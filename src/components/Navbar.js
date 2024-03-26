@@ -9,20 +9,33 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import logo from "../Assets/Images/movieLogo.png";
+import PlayByLinkForm from "./PlayByLinkForm";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout } = useLogout();
   const { TheatorUser } = useAuthcontext();
-  const { room } = useAppContext();
+  const { room, setRoom } = useAppContext();
+  const navigate = useNavigate();
 
   const [showAlert, setShowAlert] = useState(false);
+  const [showLinkForm, setShowLinkForm] = useState(false);
 
   const handleShowAlert = () => {
     setShowAlert(true);
   };
 
-  const navigate = useNavigate();
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+
+  const handleLinkForm = () => {
+    setShowLinkForm(true);
+  };
+
+  const handleCloseLinkForm = () => {
+    setShowLinkForm(false);
+  };
 
   const getInRoom = async () => {
     if (room) {
@@ -37,23 +50,11 @@ const Navbar = () => {
         if (data?.data?.videoId !== "not available" && data?.data?.videoId) {
           navigate(`/video/${data?.data?.videoId}/${room}`);
         }
-        // .catch((er) => {
-        //   console.log(er);
-        //   toast.error(er?.response?.data?.message + " First Play Video");
-        // });
       } catch (err) {
         toast.error(err?.response?.data?.message + " First Play Video");
         console.log(err);
       }
     }
-  };
-
-  const handleCloseAlert = () => {
-    setShowAlert(false);
-  };
-
-  const playWelcomeMovie = () => {
-    navigate(`/video/n2ztHOIhfvk/Shanvi `);
   };
 
   return (
@@ -102,9 +103,15 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-4">
             {TheatorUser ? (
               <>
-                <button className=" border p-1" onClick={playWelcomeMovie}>
-                  Play
+                <button
+                  className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition duration-300"
+                  onClick={handleLinkForm}
+                >
+                  Play by link
                 </button>
+                {showLinkForm && (
+                  <PlayByLinkForm onClose={handleCloseLinkForm} />
+                )}
                 <span className="text-gray-300 font-medium">
                   Welcome, {TheatorUser.username}!
                 </span>
@@ -216,11 +223,18 @@ const Navbar = () => {
           </Link>
           {TheatorUser ? (
             <>
+              <button
+                className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition duration-300"
+                onClick={handleLinkForm}
+              >
+                Play by link
+              </button>
+              {showLinkForm && <PlayByLinkForm onClose={handleCloseLinkForm} />}
               <span className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">
                 Welcome, {TheatorUser.username}!
               </span>
               <span className="text-gray-300 font-medium">
-                Room :-{" "}
+                Room :-
                 <button
                   onClick={getInRoom}
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"

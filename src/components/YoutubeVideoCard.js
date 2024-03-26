@@ -10,11 +10,16 @@ const YouTubeVideoCard = ({ video }) => {
   const { room } = useAppContext();
 
   const playHandle = () => {
-    if (TheatorUser) {
+    console.log(room);
+    if (TheatorUser?.room) {
       navigate(`/video/${video?.id?.videoId}/${room}`);
-    } else {
+      return;
+    } else if (!TheatorUser) {
       navigate("/login");
       toast.error("please Login Fisrt");
+      return;
+    } else if (!TheatorUser?.room) {
+      toast.error("Please Join Room First");
     }
   };
 

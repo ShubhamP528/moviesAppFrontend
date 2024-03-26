@@ -228,18 +228,6 @@ function Ytplayer() {
   const [host, setHost] = useState(null); // State to maintain the host
   const playerRef = useRef(null);
 
-  // useEffect(() => {
-  //   // Listen for the "videoId" event from the backend
-  //   socket.on("videoId", (receivedVideoId) => {
-  //     setVideoId(receivedVideoId);
-  //   });
-
-  //   // Clean up the socket event listener when component unmounts
-  //   return () => {
-  //     socket.off("videoId");
-  //   };
-  // }, []); // Run this effect only once upon component mount
-
   useEffect(() => {
     const handleStateChange = (event) => {
       const playerState = event.data;
@@ -368,6 +356,7 @@ function Ytplayer() {
       socket.off("newUserJoined");
       socket.off("newHost");
       socket.off("currentState");
+      socket.off("requestInitialPlaybackTime");
     };
   }, [sessionId, player, videoId]);
 
@@ -409,50 +398,57 @@ function Ytplayer() {
   };
 
   const opts = {
-    height: "390",
-    width: "640",
+    height: "400",
+    width: "100%",
     playerVars: {
       autoplay: 1, // Enable autoplay
       mute: 1, // Mute the video
       rel: 0, // Do not show related videos on video end
     },
   };
-
   return (
-    <div className="video-wrapper flex flex-col">
-      <YouTube
-        videoId={videoId}
-        opts={opts}
-        onReady={onPlayerReady}
-        onMute={onPlayerMuteChange}
-        onUnmute={onPlayerMuteChange}
-      />
-      {/* <div className="overlay"></div> */}
-      <div className="flex justify-center gap-4">
-        <button
-          className="border border-spacing-3 p-1 m-1 "
-          onClick={playVideo}
-        >
-          Play
-        </button>
-        <button
-          className="border border-spacing-3 p-1 m-1 "
-          onClick={pauseVideo}
-        >
-          Pause
-        </button>
-        <button
-          className="border border-spacing-3 p-1 m-1 "
-          onClick={() => seekBackward()}
-        >
-          Seek backward to 30s
-        </button>
-        <button
-          className="border border-spacing-3 p-1 m-1 "
-          onClick={() => seekForward()}
-        >
-          Seek forward to 30s
-        </button>
+    <div className="flex flex-col gap-2 md:flex-row">
+      <div className="w-full md:w-2/4 h-96 md:h-full">
+        <YouTube
+          videoId={videoId}
+          opts={opts}
+          onReady={onPlayerReady}
+          onMute={onPlayerMuteChange}
+          onUnmute={onPlayerMuteChange}
+          className="w-full h-full"
+        />
+        <div className="flex justify-center pb-4 md:pb-0">
+          <div className="border-t border-gray-300 pt-4">
+            <button
+              className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full m-2 md:py-1 md:px-3 md:m-1"
+              onClick={playVideo}
+            >
+              Play
+            </button>
+            <button
+              className="cursor-pointer bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full m-2 md:py-1 md:px-3 md:m-1"
+              onClick={pauseVideo}
+            >
+              Pause
+            </button>
+            <button
+              className="cursor-pointer bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full m-2 md:py-1 md:px-3 md:m-1"
+              onClick={() => seekBackward()}
+            >
+              Seek backward to 30s
+            </button>
+            <button
+              className="cursor-pointer bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full m-2 md:py-1 md:px-3 md:m-1"
+              onClick={() => seekForward()}
+            >
+              Seek forward to 30s
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="w-full md:w-2/4 h-96 md:h-full">
+        <img src="" />
+        {/* Chat component goes here */}
       </div>
     </div>
   );
