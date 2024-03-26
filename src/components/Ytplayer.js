@@ -217,7 +217,7 @@ import io from "socket.io-client";
 import YouTube from "react-youtube";
 import { useParams } from "react-router-dom";
 
-const socket = io("http://localhost:8080"); // Adjust this to your server's address
+const socket = io("https://moviesappbackend.onrender.com"); // Adjust this to your server's address
 
 function Ytplayer() {
   const { id, room } = useParams();
