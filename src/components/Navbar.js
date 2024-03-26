@@ -52,7 +52,9 @@ const Navbar = () => {
     setShowAlert(false);
   };
 
-  const changeRoom = () => {};
+  const playWelcomeMovie = () => {
+    navigate(`/video/n2ztHOIhfvk/Shanvi `);
+  };
 
   return (
     <nav className="bg-gray-800">
@@ -100,6 +102,9 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-4">
             {TheatorUser ? (
               <>
+                <button className=" border p-1" onClick={playWelcomeMovie}>
+                  Play
+                </button>
                 <span className="text-gray-300 font-medium">
                   Welcome, {TheatorUser.username}!
                 </span>
@@ -224,10 +229,10 @@ const Navbar = () => {
                 </button>
               </span>
               <button
-                onClick={changeRoom}
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                onClick={handleShowAlert}
+                className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition duration-300"
               >
-                New Room
+                Join New Room
               </button>
               <button
                 onClick={logout}

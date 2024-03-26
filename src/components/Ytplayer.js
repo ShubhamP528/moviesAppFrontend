@@ -428,7 +428,7 @@ function Ytplayer() {
         onUnmute={onPlayerMuteChange}
       />
       {/* <div className="overlay"></div> */}
-      <div className="flex justify-center gap-4 justify-start">
+      <div className="flex justify-center gap-4">
         <button
           className="border border-spacing-3 p-1 m-1 "
           onClick={playVideo}
