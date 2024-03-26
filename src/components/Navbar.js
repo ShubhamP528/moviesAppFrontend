@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+import logo from "../Assets/Images/movieLogo.png";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout } = useLogout();
@@ -57,7 +59,15 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <div className="flex-shrink-0 text-white">Logo</div>
+            <div className="flex-shrink-0">
+              <Link to="/">
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="h-10 md:h-12 lg:h-14 w-auto rounded-full" // Adjusted size to h-10 md:h-12 lg:h-14
+                />
+              </Link>
+            </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link

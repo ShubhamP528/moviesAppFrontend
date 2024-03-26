@@ -217,7 +217,7 @@ import io from "socket.io-client";
 import YouTube from "react-youtube";
 import { useParams } from "react-router-dom";
 
-const socket = io("https://moviesappbackend.onrender.com"); // Adjust this to your server's address
+const socket = io("http://localhost:8080"); // Adjust this to your server's address
 
 function Ytplayer() {
   const { id, room } = useParams();
@@ -419,7 +419,7 @@ function Ytplayer() {
   };
 
   return (
-    <div className="video-wrapper">
+    <div className="video-wrapper flex flex-col">
       <YouTube
         videoId={videoId}
         opts={opts}
@@ -428,7 +428,7 @@ function Ytplayer() {
         onUnmute={onPlayerMuteChange}
       />
       {/* <div className="overlay"></div> */}
-      <div className="flex justify-center gap-4">
+      <div className="flex justify-center gap-4 justify-start">
         <button
           className="border border-spacing-3 p-1 m-1 "
           onClick={playVideo}
