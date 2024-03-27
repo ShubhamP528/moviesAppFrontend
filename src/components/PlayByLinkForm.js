@@ -28,7 +28,7 @@ const PlayByLinkForm = ({ onClose }) => {
       return;
     }
     console.log(videoId, TheatorUser?.username);
-    navigate(`/video/${videoId}/${room} `);
+    navigate(`/video/${videoId}/${room}`);
     // Close the alert form
     onClose();
   };
