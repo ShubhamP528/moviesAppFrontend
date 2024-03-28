@@ -29,8 +29,8 @@ const About = () => {
             </p>
           </div>
           <img
-            // src="https://source.unsplash.com/random/800x600?team"
-            src="https://res.cloudinary.com/dgsjppp4a/image/upload/v1711478265/shanvi_jdxpx8.jpg"
+            src="https://source.unsplash.com/random/800x600?team"
+            // src="https://res.cloudinary.com/dgsjppp4a/image/upload/v1711478265/shanvi_jdxpx8.jpg"
             alt="About"
             className="rounded-lg shadow-lg w-full"
           />
