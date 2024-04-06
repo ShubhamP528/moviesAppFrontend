@@ -407,7 +407,7 @@ function Ytplayer() {
     },
   };
   return (
-    <div className="flex flex-col gap-2 md:flex-row">
+    <div className="flex flex-col gap-16 md:flex-row">
       <div className="w-full md:w-2/4 h-96 md:h-full">
         <YouTube
           videoId={videoId}
@@ -417,38 +417,43 @@ function Ytplayer() {
           onUnmute={onPlayerMuteChange}
           className="w-full h-full"
         />
-        <div className="flex justify-center pb-4 md:pb-0">
-          <div className="border-t border-gray-300 pt-4">
-            <button
-              className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full m-2 md:py-1 md:px-3 md:m-1"
-              onClick={playVideo}
-            >
-              Play
-            </button>
-            <button
-              className="cursor-pointer bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full m-2 md:py-1 md:px-3 md:m-1"
-              onClick={pauseVideo}
-            >
-              Pause
-            </button>
-            <button
-              className="cursor-pointer bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full m-2 md:py-1 md:px-3 md:m-1"
-              onClick={() => seekBackward()}
-            >
-              Seek backward to 30s
-            </button>
-            <button
-              className="cursor-pointer bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full m-2 md:py-1 md:px-3 md:m-1"
-              onClick={() => seekForward()}
-            >
-              Seek forward to 30s
-            </button>
-          </div>
+        <div
+          className="border-t border-gray-300 pt-4 flex justify-center gap-1 my-3"
+          // style={{ "font-size": "0.75rem", "line-height": "1rem" }}
+        >
+          <button
+            // style={{ fontSize: "0.6rem", lineHeight: "1.25rem" }}
+            className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white max-[640px]:text-xs sm:text-base md:text-sm p-1 font-bold lg:py-2 lg:px-4 rounded-full lg:m-2 md:py-1 md:px-3 md:m-1"
+            onClick={playVideo}
+          >
+            Play
+          </button>
+          <button
+            // style={{ fontSize: "0.6rem", lineHeight: "1.25rem" }}
+            className="cursor-pointer bg-green-500 hover:bg-green-600 text-white max-[640px]:text-xs sm:text-base md:text-sm p-1 font-bold lg:py-2 lg:px-4 rounded-full lg:m-2 md:py-1 md:px-3 md:m-1"
+            onClick={pauseVideo}
+          >
+            Pause
+          </button>
+          <button
+            // style={{ fontSize: "0.6rem", lineHeight: "1.25rem" }}
+            className="cursor-pointer bg-yellow-500 hover:bg-yellow-600 text-white max-[640px]:text-xs sm:text-base md:text-sm p-1 font-bold lg:py-2 lg:px-4 rounded-full lg:m-2 md:py-1 md:px-3 md:m-1"
+            onClick={() => seekBackward()}
+          >
+            Seek backward to 30s
+          </button>
+          <button
+            // style={{ fontSize: "0.6rem", lineHeight: "1.25rem" }}
+            className="cursor-pointer bg-red-500 hover:bg-red-600 text-white max-[640px]:text-xs sm:text-base md:text-sm p-1 font-bold lg:py-2 lg:px-4 rounded-full lg:m-2 md:py-1 md:px-3 md:m-1"
+            onClick={() => seekForward()}
+          >
+            Seek forward to 30s
+          </button>
         </div>
       </div>
-      <div className="w-full md:w-2/4 h-96 md:h-full">
+      <div className="w-full md:w-2/4 h-96 md:h-full text-2xl text-wrap font-extrabold">
         <img src="" />
-        {/* Chat component goes here */}
+        Chat component goes here <br /> Which Is In Progress!!!!!!!
       </div>
     </div>
   );
