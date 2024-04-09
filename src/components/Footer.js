@@ -1,4 +1,5 @@
 import React from "react";
+import "@fortawesome/fontawesome-free/css/all.css"; // Import Font Awesome CSS
 
 const Footer = () => {
   return (
@@ -41,7 +42,7 @@ const Footer = () => {
           </div>
 
           {/* Social Media Icons */}
-          <div className="flex justify-center items-center md:justify-end">
+          <div className="flex justify-center items-center md:justify-end md:mr-8">
             <div className="flex space-x-4">
               <a
                 href="#"

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import VideoGrid from "./VideoGrid";
 import SearchBar from "./SearchBar";
+import SimarUI from "./SimarUI";
 
 const Theator = () => {
   const [YtData, setYtData] = useState([]);
@@ -88,8 +89,8 @@ const Theator = () => {
       <SearchBar onSearch={setSearchQuery} />
 
       <div className="mt-5 flex justify-center">
-        <VideoGrid videos={YtData} />
-        {loading && <div>Loading...</div>}
+        {loading ? <SimarUI /> : <VideoGrid videos={YtData} />}
+        {/* <SimarUI /> */}
       </div>
     </div>
   );
