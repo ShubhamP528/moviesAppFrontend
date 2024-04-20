@@ -25,7 +25,7 @@ const Signup = () => {
             password: Yup.string().required("Required"),
           })}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            signup(values.username, values.email, values.password);
+            signup(values.username.trim(), values.email.trim(), values.password.trim());
             if (errorS) {
               toast.error(errorS);
             }

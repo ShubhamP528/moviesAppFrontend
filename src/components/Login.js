@@ -22,7 +22,7 @@ const LoginForm = () => {
             password: Yup.string().required("Required"),
           })}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            signin(values.username, values.password);
+            signin(values.username.trim(), values.password.trim());
             if (errorL) {
               console.log(errorL);
             }

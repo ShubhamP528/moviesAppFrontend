@@ -20,7 +20,7 @@ const AlertForm = ({ onClose }) => {
     // For example, you can submit the input value to a backend endpoint
     console.log("Submitted value:", inputValue);
 
-    const newCode = inputValue;
+    const newCode = inputValue.trim();
     console.log(newCode, TheatorUser?.username);
     axios
       .post("/api/room/update", {
