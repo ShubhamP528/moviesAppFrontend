@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(null);
+  const [isLoadingS, setIsLoading] = useState(null);
   const { dispatch } = useAuthcontext();
 
   const navigate = useNavigate();
@@ -47,5 +47,5 @@ export const useSignup = () => {
     }
   };
 
-  return { signup, isLoading, error };
+  return { signup, isLoadingS, error };
 };

@@ -23,10 +23,18 @@ const AlertForm = ({ onClose }) => {
     const newCode = inputValue.trim();
     console.log(newCode, TheatorUser?.username);
     axios
-      .post("/api/room/update", {
-        room: newCode,
-        username: TheatorUser.username,
-      })
+      .post(
+        "/api/room/update",
+        {
+          room: newCode,
+          username: TheatorUser.username,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${TheatorUser.token}`,
+          },
+        }
+      )
       .then((data) => {
         console.log(data.data);
         const user = JSON.parse(localStorage.getItem("TheatorUser"));
