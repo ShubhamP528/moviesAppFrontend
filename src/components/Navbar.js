@@ -40,9 +40,17 @@ const Navbar = () => {
   const getInRoom = async () => {
     if (room) {
       try {
-        const data = await axios.post("/api/getVideoId", {
-          room: room,
-        });
+        const data = await axios.post(
+          "/api/getVideoId",
+          {
+            room: room,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${TheatorUser?.token}`,
+            },
+          }
+        );
         console.log(data.data);
         if (data?.data?.videoId === "not available") {
           toast.error("Play video first");

@@ -56,7 +56,7 @@ function Ytplayer() {
       if (player) {
         document.removeEventListener("onStateChange", handleStateChange);
         window.removeEventListener("onStateChange", handleStateChange);
-        setPlayer(null);
+        // setPlayer(null);
       }
     };
   }, [player, sessionId]);
@@ -157,6 +157,7 @@ function Ytplayer() {
 
     socket.on("videoChange", ({ vId }) => {
       console.log(vId);
+      // setPlayer(null);
       setVideoId(vId);
     });
 
@@ -178,25 +179,25 @@ function Ytplayer() {
 
   // Example button handlers
   const playVideo = () => {
-    const currentTime = player.getCurrentTime();
+    const currentTime = player?.getCurrentTime();
     socket.emit("play", { sessionId, time: currentTime });
   };
 
   const pauseVideo = () => {
-    const currentTime = player.getCurrentTime();
+    const currentTime = player?.getCurrentTime();
     socket.emit("pause", { sessionId, time: currentTime });
   };
 
   const seekForward = () => {
     if (!player) return; // Ensure the player is defined
-    const currentTime = player.getCurrentTime(); // Get the current time
+    const currentTime = player?.getCurrentTime(); // Get the current time
     const newTime = currentTime + 30; // Calculate the new time by adding 30 seconds
     socket.emit("seek", { sessionId, time: newTime }); // Emit the new seek time
   };
 
   const seekBackward = () => {
     if (!player) return; // Ensure the player is defined
-    const currentTime = player.getCurrentTime(); // Get the current time
+    const currentTime = player?.getCurrentTime(); // Get the current time
     const newTime = currentTime - 30; // Calculate the new time by adding 30 seconds
     socket.emit("seek", { sessionId, time: newTime }); // Emit the new seek time
   };
@@ -262,7 +263,6 @@ function Ytplayer() {
         </div>
       </div>
       <div className="w-full md:w-2/4 h-96 md:h-full text-2xl text-wrap font-extrabold">
-        <img src="" />
         Chat component goes here <br /> Which Is In Progress!!!!!!!
       </div>
     </div>
