@@ -5,28 +5,8 @@
       "destination": "https://moviesappbackend.onrender.com/api/$1"
     },
     {
-      "source": "/",
-      "destination": "/"
-    },
-    {
-      "source": "/signup",
-      "destination": "/"
-    },
-    {
-      "source": "/login",
-      "destination": "/"
-    },
-    {
-      "source": "/about",
-      "destination": "/"
-    },
-    {
-      "source": "/contact",
-      "destination": "/"
-    },
-    {
-      "source": "/theator",
-      "destination": "/"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
