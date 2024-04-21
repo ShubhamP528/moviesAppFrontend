@@ -9,6 +9,11 @@
       "src": "/(?!api/)(.*)",
       "dest": "https://movies-app-frontend-shubhams-projects-9fdff750.vercel.app/$1",
       "methods": ["GET"]
+    },
+    {
+      "src": "/",
+      "dest": "https://movies-app-frontend-shubhams-projects-9fdff750.vercel.app",
+      "methods": ["GET"]
     }
   ]
 }
