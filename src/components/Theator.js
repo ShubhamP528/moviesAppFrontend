@@ -55,7 +55,7 @@ const Theator = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&pageToken=${pageToken}&q=${searchQuery} song&key=AIzaSyBwMshSAOyLsJ27wBd7A0RnsdkRIIhPTW0`
+        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&pageToken=${pageToken}&q=${searchQuery} song&key=AIzaSyDptw29QDvr3hBZxpnMOTUO-RPPQiGL0NQ`
       );
       setYtData(response.data.items);
       setTotalResults(response.data.pageInfo.totalResults);

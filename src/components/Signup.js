@@ -47,7 +47,7 @@ const Signup = () => {
               values.password.trim()
             );
             if (errorS) {
-              toast.error(errorS);
+              // toast.error(errorS);
             }
             setSubmitting(false);
             resetForm();
