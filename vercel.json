@@ -1,5 +1,5 @@
 {
-  "routes": [
+  "rewrites": [
     {
       "src": "/api/(.*)",
       "dest": "https://moviesappbackend.onrender.com/api/$1",
