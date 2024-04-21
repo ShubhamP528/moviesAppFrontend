@@ -3,32 +3,30 @@
     {
       "source": "/api/(.*)",
       "destination": "https://moviesappbackend.onrender.com/api/$1"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/"
     },
     {
-      "src": "/signup",
-      "dest": "/"
+      "source": "/",
+      "destination": "/"
     },
     {
-      "src": "/login",
-      "dest": "/"
+      "source": "/signup",
+      "destination": "/"
     },
     {
-      "src": "/about",
-      "dest": "/"
+      "source": "/login",
+      "destination": "/"
     },
     {
-      "src": "/contact",
-      "dest": "/"
+      "source": "/about",
+      "destination": "/"
     },
     {
-      "src": "/theator",
-      "dest": "/"
+      "source": "/contact",
+      "destination": "/"
+    },
+    {
+      "source": "/theator",
+      "destination": "/"
     }
   ]
 }
