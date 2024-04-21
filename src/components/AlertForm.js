@@ -55,10 +55,18 @@ const AlertForm = ({ onClose }) => {
     console.log(TheatorUser.username);
     const newCode = generateRoomCode();
     axios
-      .post("api/room/update", {
-        room: newCode,
-        username: TheatorUser.username,
-      })
+      .post(
+        "api/room/update",
+        {
+          room: newCode,
+          username: TheatorUser.username,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${TheatorUser.token}`,
+          },
+        }
+      )
       .then((data) => {
         console.log(data.data);
         const user = JSON.parse(localStorage.getItem("TheatorUser"));
