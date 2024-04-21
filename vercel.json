@@ -4,5 +4,31 @@
       "source": "/api/(.*)",
       "destination": "https://moviesappbackend.onrender.com/api/$1"
     }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/"
+    },
+    {
+      "src": "/signup",
+      "dest": "/"
+    },
+    {
+      "src": "/login",
+      "dest": "/"
+    },
+    {
+      "src": "/about",
+      "dest": "/"
+    },
+    {
+      "src": "/contact",
+      "dest": "/"
+    },
+    {
+      "src": "/theator",
+      "dest": "/"
+    }
   ]
 }
