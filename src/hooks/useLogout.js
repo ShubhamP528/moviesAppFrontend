@@ -1,9 +1,11 @@
 // import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../Contexts/AppContext";
 import { useAuthcontext } from "../Contexts/AuthContext";
 import toast from "react-hot-toast";
 
 export const useLogout = () => {
   const { dispatch } = useAuthcontext();
+  const { setRoom } = useAppContext();
   // const navigate=useNavigate()
 
   const logout = () => {
@@ -14,6 +16,7 @@ export const useLogout = () => {
     toast.success("Successfully logout");
     // dispatch logout action
     dispatch({ type: "LOGOUT" });
+    setRoom("");
     // navigate('/home')
   };
 
