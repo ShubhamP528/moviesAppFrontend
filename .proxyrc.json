@@ -1,8 +1,9 @@
 {
   "/api": {
-    "target": "http://localhost:8080/api",
+    "target": "https://movies-app-backend-two.vercel.app/api",
     "pathRewrite": {
       "^/api": ""
-    }
+    },
+    "secure": false
   }
 }
