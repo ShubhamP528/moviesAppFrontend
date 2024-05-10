@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://movies-app-backend-two.vercel.app//api/$1"
+      "destination": "https://moviesappbackend.onrender.com/api/$1"
     },
     {
       "source": "/(.*)",
