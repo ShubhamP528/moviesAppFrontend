@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthcontext } from "../Contexts/AuthContext";
@@ -64,6 +64,26 @@ const Navbar = () => {
       }
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/");
+        console.log("Data fetched successfully");
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    // Fetch data initially
+    fetchData();
+
+    // Fetch data every 10 minutes
+    const interval = setInterval(fetchData, 10 * 60 * 1000);
+
+    // Cleanup function to clear interval
+    return () => clearInterval(interval);
+  }, []); // Empty dependency array ensures this effect runs only once
 
   return (
     <nav className="bg-gray-800">
