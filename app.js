@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import NavBar from "./src/components/Navbar";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -17,6 +17,26 @@ import Temp from "./src/components/Temp";
 import { AppContextProvider } from "./src/Contexts/AppContext";
 
 const Applayout = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/");
+        console.log("Data fetched successfully");
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    // Fetch data initially
+    fetchData();
+
+    // Fetch data every 10 minutes
+    const interval = setInterval(fetchData, 5 * 60 * 1000);
+
+    // Cleanup function to clear interval
+    return () => clearInterval(interval);
+  }, []); // Empty dependency array ensures this effect runs only once
+
   return (
     <AuthContextProvider>
       <AppContextProvider>

@@ -1,6 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+const images = [
+  "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://plus.unsplash.com/premium_photo-1663076010545-c01827be01dc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+];
+
 const Home = () => {
   return (
     <div className="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 min-h-screen text-white py-16">
@@ -44,15 +53,13 @@ const Home = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          {[...Array(6)].map((_, index) => (
+          {[...images].map((im, index) => (
             <motion.div
               key={index}
               className="bg-gray-800 rounded-lg shadow-xl overflow-hidden"
               style={{
                 paddingBottom: "56.25%", // Aspect ratio 16:9
-                backgroundImage: `url('https://source.unsplash.com/random/${Math.floor(
-                  Math.random() * 800
-                )}x${Math.floor(Math.random() * 600)}?movie')`,
+                backgroundImage: `url(${im})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}

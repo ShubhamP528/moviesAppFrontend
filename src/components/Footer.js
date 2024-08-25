@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "@fortawesome/fontawesome-free/css/all.css"; // Import Font Awesome CSS
 
 const Footer = () => {
@@ -19,24 +20,24 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
             <ul>
               <li className="mb-1">
-                <a href="#" className="text-sm hover:text-gray-400">
+                <Link to="/" className="text-sm hover:text-gray-400">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a href="#" className="text-sm hover:text-gray-400">
+                <Link to="/about" className="text-sm hover:text-gray-400">
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a href="#" className="text-sm hover:text-gray-400">
+                <Link to="#" className="text-sm hover:text-gray-400">
                   Services
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a href="#" className="text-sm hover:text-gray-400">
+                <Link to="/contact" className="text-sm hover:text-gray-400">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -44,36 +45,38 @@ const Footer = () => {
           {/* Social Media Icons */}
           <div className="flex justify-center items-center md:justify-end md:mr-8">
             <div className="flex space-x-4">
-              <a
-                href="#"
+              <Link
+                to="https://github.com/ShubhamP528"
                 className="text-white hover:text-gray-400 transition duration-300"
               >
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="#"
+                <i className="fab fa-github"></i>
+              </Link>
+              <Link
+                to="https://x.com/@Shubham14481056"
                 className="text-white hover:text-gray-400 transition duration-300"
               >
                 <i className="fab fa-twitter"></i>
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="https://www.linkedin.com/in/shubham-prajapati-a3b635228/"
                 className="text-white hover:text-gray-400 transition duration-300"
               >
                 <i className="fab fa-instagram"></i>
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="https://www.linkedin.com/in/shubham-prajapati-a3b635228/"
                 className="text-white hover:text-gray-400 transition duration-300"
               >
                 <i className="fab fa-linkedin-in"></i>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         {/* Additional Information */}
         <div className="mt-8 text-white text-center md:text-left">
-          <p className="text-sm">© 2024 Company Name. All rights reserved.</p>
+          <p className="text-sm">
+            © 2024 Software Solution Pvt Ltd. All rights reserved.
+          </p>
           <p className="text-sm mt-1">
             Terms of Service | Privacy Policy | Sitemap
           </p>
