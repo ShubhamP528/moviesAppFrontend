@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import io from "socket.io-client";
-import YouTube from "react-youtube";
+import socket from "../connection"; // Import the central socket instanceimport YouTube from "react-youtube";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuthcontext } from "../Contexts/AuthContext";
+import Chat from "./Chat";
+import YouTube from "react-youtube";
 
 // const socket = io("https://moviesappbackend-1.onrender.com"); // Adjust this to your server's address
-const socket = io("https://moviesappbackend.onrender.com"); // Adjust this to your server's address
+// const socket = io("https://moviesappbackend.onrender.com"); // Adjust this to your server's address
 // const socket = io("https://movies-app-backend-two.vercel.app"); // Adjust this to your server's address
 // const socket = io("http://localhost:8080"); // Adjust this to your server's address
 
@@ -58,10 +59,10 @@ function Ytplayer() {
       if (player) {
         document.removeEventListener("onStateChange", handleStateChange);
         window.removeEventListener("onStateChange", handleStateChange);
-        // setPlayer(null);
       }
     };
   }, [player, sessionId]);
+  console.log(socket);
 
   useEffect(() => {
     socket.emit("joinRoom", { sessionId, videoId }); // Send videoId along with sessionId
@@ -123,7 +124,7 @@ function Ytplayer() {
           action,
           time: currentTime,
         });
-        videoId;
+        // videoId;
       }
     });
 
@@ -157,10 +158,18 @@ function Ytplayer() {
       }
     });
 
-    socket.on("videoChange", ({ vId }) => {
+    socket.on("videoChange", ({ vId, action, time }) => {
       console.log(vId);
       // setPlayer(null);
+      console.log(vId, action, time);
       setVideoId(vId);
+      if (player && action === "play") {
+        player.seekTo(time, true);
+        player.playVideo();
+      } else if (player && action === "pause") {
+        player.seekTo(time, true);
+        player.pauseVideo();
+      }
     });
 
     return () => {
@@ -220,7 +229,7 @@ function Ytplayer() {
     },
   };
   return (
-    <div className="flex flex-col gap-16 md:flex-row">
+    <div className="flex flex-col gap-16 md:flex-row h-fit">
       <div className="w-full md:w-2/4 h-96 md:h-full">
         <YouTube
           videoId={videoId}
@@ -264,8 +273,9 @@ function Ytplayer() {
           </button>
         </div>
       </div>
-      <div className="w-full md:w-2/4 h-96 md:h-full text-2xl text-wrap font-extrabold">
-        Chat component goes here <br /> Which Is In Progress!!!!!!!
+      <div className="w-full md:w-2/4 h-96 text-wrap ">
+        {/* Chat component goes here <br /> Which Is In Progress!!!!!!! */}
+        <Chat />
       </div>
     </div>
   );
