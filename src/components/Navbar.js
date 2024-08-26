@@ -65,26 +65,6 @@ const Navbar = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/");
-        console.log("Data fetched successfully");
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    // Fetch data initially
-    fetchData();
-
-    // Fetch data every 10 minutes
-    const interval = setInterval(fetchData, 10 * 60 * 1000);
-
-    // Cleanup function to clear interval
-    return () => clearInterval(interval);
-  }, []); // Empty dependency array ensures this effect runs only once
-
   return (
     <nav className="bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-2 lg:px-4 max-[1088px]:text-xs ">
