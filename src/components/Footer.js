@@ -9,10 +9,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4">
           {/* Company Info */}
           <div className="text-white">
-            <h3 className="text-lg font-semibold mb-2">Company Name</h3>
-            <p className="text-sm mb-1">123 Street, City, Country</p>
-            <p className="text-sm mb-1">info@example.com</p>
-            <p className="text-sm mb-1">123-456-7890</p>
+            <h3 className="text-lg font-semibold mb-2">
+              Software Software Pvt Ltd
+            </h3>
+            <p className="text-sm mb-1">
+              Rudrapur, Udham Singh Nagar, Uttarakhand, IN
+            </p>
+            <p className="text-sm mb-1">shubhamprajapati528@gmail.com</p>
+            <p className="text-sm mb-1">+919027640571</p>
           </div>
 
           {/* Quick Links */}
@@ -89,7 +93,20 @@ const Footer = () => {
             © 2024 Software Solution Pvt Ltd. All rights reserved.
           </p>
           <p className="text-sm mt-1">
-            Terms of Service | Privacy Policy | Sitemap
+            <Link
+              to="term-and-conditions"
+              className="text-sm hover:text-gray-400"
+            >
+              Terms of Conditions
+            </Link>{" "}
+            |{" "}
+            <Link to="/privacy-policy" className="text-sm hover:text-gray-400">
+              Privacy Policy
+            </Link>
+            {/* |{" "}
+            <Link to="3" className="text-sm hover:text-gray-400">
+              Sitemap
+            </Link> */}
           </p>
         </div>
       </div>
