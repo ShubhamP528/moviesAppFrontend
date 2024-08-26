@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import socket from "../connection"; // Import the central socket instance
 import { useAuthcontext } from "../Contexts/AuthContext";
 import toast from "react-hot-toast";
-// import dummyProfilePic from "../assets/dummy-profile.png"; // Add a dummy profile picture
 
 function Chat() {
   const { room } = useParams();
@@ -11,12 +10,15 @@ function Chat() {
   const [message, setMessage] = useState("");
   const { TheatorUser } = useAuthcontext();
 
+  // Create a reference for the chat messages container
+  const messagesEndRef = useRef(null);
+
   useEffect(() => {
     // Listen for incoming messages
     socket.on("receiveMessage", (msg) => {
       setMessages((prevMessages) => [...prevMessages, msg]);
       if (TheatorUser.username !== msg.username) {
-        toast.success(`${msg.username} :- ${msg.message}`);
+        toast.success(`${msg.username}: ${msg.text}`);
       }
     });
 
@@ -24,12 +26,13 @@ function Chat() {
     return () => {
       socket.off("receiveMessage");
     };
-  }, []);
+  }, [TheatorUser.username]);
 
-  // Scroll to the top of the chat messages container when messages are updated
+  // Scroll to the bottom of the chat messages container when messages are updated
   useEffect(() => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollTop = 0;
+      // Scroll to the bottom
+      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
     }
   }, [messages]);
 
@@ -41,12 +44,8 @@ function Chat() {
         time: new Date().toLocaleTimeString(),
       };
 
-      console.log(room, newMessage);
-
       // Emit the message to the server
       socket.emit("chatMessage", { room, message: newMessage });
-
-      console.log(socket);
 
       // Clear the input field
       setMessage("");
@@ -64,20 +63,48 @@ function Chat() {
       <div className="chat-header bg-blue-500 text-white font-bold text-lg p-2 rounded-t-md">
         Live Chat
       </div>
-      <div className="chat-messages flex-1 p-4 overflow-y-auto">
+      <div
+        className="chat-messages flex-1 p-4 overflow-y-auto"
+        ref={messagesEndRef} // Attach the reference to the chat messages container
+      >
         {messages.map((msg, index) => (
-          <div key={index} className="chat-message flex items-start mb-4">
-            <img
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
-              // Use a path to your dummy profile picture
-              alt="profile"
-              className="w-8 h-8 rounded-full mr-2"
-            />
-            <div>
-              <div className="font-semibold">{msg.username}</div>
+          <div
+            key={index}
+            className={`chat-message flex mb-4 ${
+              msg.username === TheatorUser.username
+                ? "justify-end"
+                : "justify-start"
+            }`}
+          >
+            {/* Profile icon positioned based on message alignment */}
+            {msg.username !== TheatorUser.username && (
+              <img
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                alt="profile"
+                className="w-8 h-8 rounded-full mr-2"
+              />
+            )}
+            <div
+              className={`${
+                msg.username === TheatorUser.username
+                  ? "bg-violet-400 text-white"
+                  : "bg-gray-200 text-black"
+              } p-2 rounded-md max-w-xs`}
+            >
+              <div className="font-semibold">
+                {msg.username === TheatorUser.username ? "You" : msg.username}
+              </div>
               <div className="text-sm">{msg.text}</div>
               <div className="text-xs text-gray-500">{msg.time}</div>
             </div>
+            {/* Profile icon for the current user's message */}
+            {msg.username === TheatorUser.username && (
+              <img
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                alt="profile"
+                className="w-8 h-8 rounded-full ml-2"
+              />
+            )}
           </div>
         ))}
       </div>
