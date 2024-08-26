@@ -34,7 +34,7 @@ const Applayout = () => {
     fetchData();
 
     // Fetch data every 10 minutes
-    const interval = setInterval(fetchData, 5 * 60 * 1000);
+    const interval = setInterval(fetchData, 2 * 60 * 1000);
 
     // Cleanup function to clear interval
     return () => clearInterval(interval);
