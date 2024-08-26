@@ -82,7 +82,7 @@ const TermsAndConditions = () => {
               By email:
               <a
                 href="mailto:shubham528prajapati@gmail.com"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline text-base"
               >
                 {" "}
                 shubham528prajapati@gmail.com
@@ -92,7 +92,7 @@ const TermsAndConditions = () => {
               By visiting this page on our website:
               <a
                 href="https://shubhamprajapati528.netlify.app"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline text-base"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -104,7 +104,7 @@ const TermsAndConditions = () => {
               By phone number:
               <a
                 href="tel:+919027640571"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline text-base"
               >
                 {" "}
                 +91 90276 40571
