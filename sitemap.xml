@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+    <url>
+      <loc>https://syncmovieapp.vercel.app//</loc>
+      <priority>1</priority>
+    </url>
+    <url>
+      <loc>https://syncmovieapp.vercel.app//about</loc>
+      <priority>0.8</priority>
+    </url>
+    <url>
+      <loc>https://syncmovieapp.vercel.app//contact</loc>
+      <priority>0.8</priority>
+    </url>
+    <url>
+      <loc>https://syncmovieapp.vercel.app//theator</loc>
+      <priority>0.7</priority>
+    </url>
+    <url>
+      <loc>https://syncmovieapp.vercel.app//login</loc>
+      <priority>0.6</priority>
+    </url>
+    <url>
+      <loc>https://syncmovieapp.vercel.app//signup</loc>
+      <priority>0.6</priority>
+    </url>
+    <url>
+      <loc>https://syncmovieapp.vercel.app//term-and-conditions</loc>
+      <priority>0.6</priority>
+    </url>
+    <url>
+      <loc>https://syncmovieapp.vercel.app//privacy-policy</loc>
+      <priority>0.6</priority>
+    </url>
+    <url>
+      <loc>https://syncmovieapp.vercel.app//signup</loc>
+      <priority>0.6</priority>
+    </url>
+</urlset>

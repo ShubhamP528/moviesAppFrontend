@@ -15,6 +15,9 @@ import Ytplayer from "./src/components/Ytplayer";
 import Footer from "./src/components/Footer";
 import Temp from "./src/components/Temp";
 import { AppContextProvider } from "./src/Contexts/AppContext";
+import TermsAndConditions from "./src/components/TermAndCondition";
+import PrivacyAndPolicy from "./src/components/PrivacyPolicy";
+import PrivacyPolicy from "./src/components/PrivacyPolicy";
 
 const Applayout = () => {
   useEffect(() => {
@@ -73,6 +76,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/term-and-conditions",
+        element: <TermsAndConditions />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
       },
       {
         path: "/contact",
