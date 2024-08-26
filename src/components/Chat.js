@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import socket from "../connection"; // Import the central socket instance
 import { useAuthcontext } from "../Contexts/AuthContext";
+import toast from "react-hot-toast";
 // import dummyProfilePic from "../assets/dummy-profile.png"; // Add a dummy profile picture
 
 function Chat() {
@@ -14,6 +15,9 @@ function Chat() {
     // Listen for incoming messages
     socket.on("receiveMessage", (msg) => {
       setMessages((prevMessages) => [...prevMessages, msg]);
+      if (TheatorUser.username !== msg.username) {
+        toast.success(`${msg.username} :- ${msg.message}`);
+      }
     });
 
     // Cleanup on component unmount
@@ -21,6 +25,13 @@ function Chat() {
       socket.off("receiveMessage");
     };
   }, []);
+
+  // Scroll to the top of the chat messages container when messages are updated
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTop = 0;
+    }
+  }, [messages]);
 
   const sendMessage = () => {
     if (message.trim()) {
