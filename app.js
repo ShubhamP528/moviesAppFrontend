@@ -24,7 +24,7 @@ const Applayout = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/");
+        const response = await axios.get("/api/hii");
         console.log("Data fetched successfully");
       } catch (error) {
         console.error("Error fetching data:", error);
